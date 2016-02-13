@@ -4,33 +4,37 @@ exports.data = {
   "currency": "GBP",
   "budgetLimit": 50,
   "remainingBudget": 30,
-  "accounts" : [
+  "accounts" : 
+  [
     {
-    "accountNo": 123456
-    "balance": 500
-  },
-  {
-                 "accountNo": 7654321,
-                 "balance": 200
-  }
-               ]
-  "transactions": [
-  {
-  "date": "01/02/2015",
-  "amount": 10,
-  "reference": "Tesko"
- },
-  {
-  "date": "02/03/2015",
-  "amount": 5,
-  "reference": "Lidl"
- },
-  {
-  "date": "15/03/2015",
-  "amount": 7,
-  "reference": "Sainsbury's"
- }
+      "accountNo": 123456,
+      "balance": 500,
+      "isMain": true
+    },
+    {
+      "accountNo": 7654321,
+      "balance": 200,
+      "isMain": false
+    }
+  ],
+  "transactions": 
+  [
+    {
+      "date": "01/02/2015",
+      "amount": 10,
+      "reference": "Tesco"
+    },
+    {
+      "date": "02/03/2015",
+      "amount": 5,
+      "reference": "Lidl"
+    },
+    {
+      "date": "15/03/2015",
+      "amount": 7,
+      "reference": "Sainsbury's"
+   }
   ]
-}
+};
   
   
