@@ -12,7 +12,7 @@ var loginCard = new UI.Card({
    title:'Please insert your pattern'
 });
 
-// Test code is = [10, 30, 31];
+// Test code is = [10, 30, 21];
 
 exports.main = function(authCode, callback) {
   
@@ -53,5 +53,5 @@ exports.main = function(authCode, callback) {
     callback(self.clicks == authCode);
   });
 
-}
+};
 
