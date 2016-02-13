@@ -12,17 +12,44 @@ var loginCard = new UI.Card({
 });
 
 
-exports.main = function() {
+exports.main = function(authCode, callback) {
+  
+  this.clicks = [];
+  var self = this;
+  
   // Display the Card
   loginCard.show();
   
   loginCard.on('click', 'up', function() {
     console.log('Up clicked!');
+    self.clicks.push(UP_SHORT);
   });
   
-  wind.on('click', 'up', function() {
-  console.log('Up clicked!');
-});
+  loginCard.on('click', 'down', function() {
+    console.log('Down clicked!');
+    self.clicks.push(DOWN_SHORT);
+  });
+  
+  loginCard.on('click', 'select', function() {
+    console.log('Select clicked!');
+    self.clicks.push(SELECT_SHORT);
+  });
+  
+  loginCard.on('longClick', 'up', function() {
+    console.log('Up long clicked!');
+    self.clicks.push(UP_LONG);
+  });
+  
+  loginCard.on('longClick', 'down', function() {
+    console.log('Down long clicked!');
+    self.clicks.push(DOWN_LONG);
+  });
+  
+  loginCard.on('longClick', 'select', function() {
+    console.log('Select long clicked!');
+    self.clicks.push(SELECT_LONG);
+    callback(self.clicks == authCode);
+  });
 
 }
 
