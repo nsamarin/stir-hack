@@ -9,10 +9,11 @@ var auth = require('./authenticate');
 
 
 //Should be securely stored in the DB
-var dummyAuthenticationCode = [10, 30, 31];
+var dummyAuthenticationCode = [10, 30, 21];
 
 auth.main(dummyAuthenticationCode, function(grantAccess) {
   console.log(grantAccess);
+  if (grantAccess) menu.main();
 });
 
 

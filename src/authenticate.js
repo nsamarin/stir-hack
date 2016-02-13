@@ -48,9 +48,16 @@ exports.main = function(authCode, callback) {
   });
   
   loginCard.on('longClick', 'select', function() {
-    console.log('Select long clicked!', self.clicks);
     self.clicks.push(SELECT_LONG);
-    callback(self.clicks == authCode);
+    console.log('Select long clicked!', self.clicks, authCode);
+    if (self.clicks.length != authCode.length) callback(false);
+    else { 
+      for (var i = 0; i < authCode.length; i++) {
+        if (authCode[i] == self.clicks[i]) continue;
+        else callback(false);
+      }
+      callback(true);
+    }
   });
 
 };
