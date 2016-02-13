@@ -3,12 +3,18 @@
  *
  * 
  */
-//var UI = require('ui');
+var UI = require('ui');
 var menu = require('./menu');
-//var auth = require('./authenticate');
+var auth = require('./authenticate');
 
-menu.main();
-//auth.main();
+
+//Should be securely stored in the DB
+var dummyAuthenticationCode = [10, 30, 21]
+
+auth.main(dummyAuthenticationCode, function(grantAccess) {
+  console.log(grantAccess);
+});
+
 
 
 

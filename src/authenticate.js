@@ -1,33 +1,28 @@
-var UI = require('ui');
 
-// Show splash screen while waiting for data
-var splashWindow = new UI.Window();
-var Vector2 = require('vector2');
+var UP_SHORT = 10;
+var UP_LONG = 11;
+var SELECT_SHORT = 20;
+var SELECT_LONG = 21;
+var DOWN_SHORT = 30;
+var DOWN_LONG = 31;
 
-var clicks = {
-  upClicks: 0,
-  upLongClicks: 0,
-  selectClicks: 0,
-  selectLongClicks: 0,
-  downclicks: 0,
-  downLongClicks: 0
-};
-
-exports.main = function() {
-  // Text element to inform user
-var text = new UI.Text({
-  position: new Vector2(0, 0),
-  size: new Vector2(144, 168),
-  text:'Please insert your pattern',
-  font:'GOTHIC_28_BOLD',
-  color:'black',
-  textOverflow:'wrap',
-  textAlign:'center',
-  backgroundColor:'white'
+// Create a Card with title and subtitle
+var loginCard = new UI.Card({
+   title:'Please insert your pattern'
 });
 
-// Add to splashWindow and show
-splashWindow.add(text);
-splashWindow.show();
+
+exports.main = function() {
+  // Display the Card
+  loginCard.show();
+  
+  loginCard.on('click', 'up', function() {
+    console.log('Up clicked!');
+  });
+  
+  wind.on('click', 'up', function() {
+  console.log('Up clicked!');
+});
+
 }
 
