@@ -4,17 +4,44 @@
         ""
     ],
     "companyName": "n.samarin.s@gmail.com",
-    "enableMultiJS": true,
-    "longName": "PebbleC",
-    "projectType": "native",
+    "longName": "Test",
+    "projectType": "pebblejs",
     "resources": {
-        "media": []
+        "media": [
+            {
+                "file": "images/menu_icon.png",
+                "menuIcon": true,
+                "name": "IMAGE_MENU_ICON",
+                "type": "bitmap"
+            },
+            {
+                "file": "images/logo_splash.png",
+                "name": "IMAGE_LOGO_SPLASH",
+                "type": "bitmap"
+            },
+            {
+                "file": "images/tile_splash.png",
+                "name": "IMAGE_TILE_SPLASH",
+                "type": "bitmap"
+            },
+            {
+                "file": "fonts/UbuntuMono-Regular.ttf",
+                "name": "MONO_FONT_14",
+                "type": "font"
+            }
+        ]
     },
     "sdkVersion": "3",
-    "shortName": "PebbleC",
-    "uuid": "715f8684-e5ca-46dd-9699-4372062ca9c7",
+    "shortName": "Test",
+    "targetPlatforms": [
+        "aplite",
+        "basalt"
+    ],
+    "uuid": "1a2662cb-9c88-4801-86c9-037711c39275",
+    "versionCode": 1,
     "versionLabel": "1.0",
     "watchapp": {
+        "hiddenApp": false,
         "watchface": false
     }
 }
