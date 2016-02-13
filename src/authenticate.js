@@ -1,3 +1,4 @@
+var UI = require('ui');
 
 var UP_SHORT = 10;
 var UP_LONG = 11;
@@ -11,6 +12,7 @@ var loginCard = new UI.Card({
    title:'Please insert your pattern'
 });
 
+// Test code is = [10, 30, 31];
 
 exports.main = function(authCode, callback) {
   
@@ -46,7 +48,7 @@ exports.main = function(authCode, callback) {
   });
   
   loginCard.on('longClick', 'select', function() {
-    console.log('Select long clicked!');
+    console.log('Select long clicked!', self.clicks);
     self.clicks.push(SELECT_LONG);
     callback(self.clicks == authCode);
   });
