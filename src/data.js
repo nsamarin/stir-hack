@@ -1,5 +1,5 @@
 exports.data = {
-  
+  "authCode": [10, 30, 21],
   "sort": 181616,
   "currency": "GBP",
   "budgetLimit": 50,
@@ -17,6 +17,7 @@ exports.data = {
       "isMain": false
     }
   ],
+  
   "transactions": 
   [
     {

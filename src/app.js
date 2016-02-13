@@ -1,11 +1,12 @@
 /**
- * 
+ * The main application logic
  *
  * 
  */
 var UI = require('ui');
 var menu = require('./menu');
 var auth = require('./authenticate');
+var transactions = require('./viewTransactions');
 
 
 //Should be securely stored in the DB
@@ -17,23 +18,8 @@ auth.main(dummyAuthenticationCode, function(grantAccess) {
     console.log('Received message: ' + JSON.stringify(e.payload));
   }
 );
-  
   console.log(grantAccess);
   if (grantAccess) menu.main();
 });
 
-
-
-
-// // Create a Card with title and subtitle
-// var card = new UI.Card({
-//   title:'JP Morgan',
-//   subtitle:'Enter the right button combination'
-// });
-
-// card.on('click', 'up', function() {
-//   console.log('Up clicked!');
-// });
-
-// // Display the Card
-// card.show();
+// transactions.main();
