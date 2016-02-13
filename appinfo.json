@@ -1,0 +1,23 @@
+{
+    "appKeys": {
+        "message": 1,
+        "status": 0
+    },
+    "capabilities": [
+        ""
+    ],
+    "companyName": "n.samarin.s@gmail.com",
+    "enableMultiJS": true,
+    "longName": "PebbleC",
+    "projectType": "native",
+    "resources": {
+        "media": []
+    },
+    "sdkVersion": "3",
+    "shortName": "PebbleC",
+    "uuid": "7e3e36af-0fdc-4f1b-85b0-f43bea768145",
+    "versionLabel": "1.0",
+    "watchapp": {
+        "watchface": false
+    }
+}
