@@ -1,5 +1,7 @@
 var UI = require('ui');
 
+var selectedAcc = 0;
+
 var accountsSample = [
     {
       "accountNo": 123456,
@@ -13,25 +15,36 @@ var accountsSample = [
     }
   ];
 
+// Create a Card with title and subtitle
+
 exports.main = function() {
   this.accounts = [];
   var self = this;
   
   // Populate the transactions array with dummy data from db
   for (var i = 0; i < accountsSample.length; i++) {
+    var end = accountsSample[i].isMain ? ", Main" : "";
     self.accounts.push({
       title: accountsSample[i].balance.toString(),
-      subtitle: accountsSample[i].accountNo.toString()
+      subtitle: accountsSample[i].accountNo.toString() + end 
     });
   }
   
   // Construct Menu to show to user
   this.accountsMenu = new UI.Menu({
     sections: [{
-      title: 'Accounts',
+      title: 'Select to set MainAcc',
       items: self.accounts
     }]
   });
-
+  
   this.accountsMenu.show();
+  this.accountsMenu.on('select', function(e) {
+    accountsSample[selectedAcc].isMain = false;
+    selectedAcc = e.itemIndex;
+    accountsSample[selectedAcc].isMain = true;
+    console.log("It's mmkay");
+    self.accountsMenu.hide();
+  });
+  
 };
