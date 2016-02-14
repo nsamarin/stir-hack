@@ -1,7 +1,6 @@
 var UI = require('ui');
+var accounts = require('./accounts');
 var transactions = require('./viewTransactions');
-var contacts = require('./payment');
-
 // Construct Menu to show to user
 
 var mainAccSum = 5000;
@@ -35,29 +34,20 @@ var resultsMenu = new UI.Menu({
   }]
 });
 
-
-// Show the Menu
+// Show the Menu, hide the splash
 exports.main = function(){
   resultsMenu.show();
-  
-  // Register for 'tap' events
-  resultsMenu.on('accelTap', function(e) {
-    console.log('TAP!');
-    console.log('axis: ' + e.axis + ', direction:' + e.direction);
-    resultsMenu.items(0,   {
-      title: "150£",
-      subtitle: mainAccNum.toString()
-    });
-  });
   
   // Add an action for menu options
   resultsMenu.on('select', function(e) {
     
-    if (e.itemIndex === 0) {}
+    if (e.itemIndex === 0) accounts.main();
     if (e.itemIndex == 1) {}
     if (e.itemIndex == 2) transactions.main();
-    if (e.itemIndex == 3) contacts.main();
+    if (e.itemIndex == 3) {}
+    
     
     console.log('Item number ' + e.itemIndex + ' was pressed!');
   });
 };
+//splashWindow.hide();
