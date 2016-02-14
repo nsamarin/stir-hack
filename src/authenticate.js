@@ -50,11 +50,18 @@ exports.main = function(authCode, callback) {
   loginCard.on('longClick', 'select', function() {
     self.clicks.push(SELECT_LONG);
     console.log('Select long clicked!', self.clicks, authCode);
-    if (self.clicks.length != authCode.length) callback(false);
+    loginCard.hide();
+    if (self.clicks.length != authCode.length) {
+      callback(false);
+      return;
+    }
     else { 
       for (var i = 0; i < authCode.length; i++) {
         if (authCode[i] == self.clicks[i]) continue;
-        else callback(false);
+        else {
+          callback(false);
+          return;
+        }
       }
       callback(true);
     }

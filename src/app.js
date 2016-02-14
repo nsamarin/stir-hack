@@ -5,15 +5,16 @@
  */
 
 var UI = require('ui');
-var Accel = require('ui/accel');
 var menu = require('./menu');
 var auth = require('./authenticate');
 
 //Should be securely stored in the DB
 var dummyAuthenticationCode = [10, 30, 21];
 
-// Initialize the accelerometer
-//Accel.init();
+// Create a Card with title and subtitle
+var authFail = new UI.Card({
+   title:'Incorrect Pattern!'
+});
 
 auth.main(dummyAuthenticationCode, function(grantAccess) {
   Pebble.addEventListener('appmessage',
@@ -25,6 +26,7 @@ auth.main(dummyAuthenticationCode, function(grantAccess) {
   if (grantAccess) {
     menu.main();
   }
+  else authFail.show();
 });
 
 // transactions.main();
