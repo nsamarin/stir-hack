@@ -6,7 +6,7 @@ var Accel = require('ui/accel');
 
 // Construct Menu to show to user
 
-var mainAccSum = 5000;
+var mainAccSum = 500;
 var mainAccNum = 12345678;
 var budget = 50;
 var remainingBudget = 30;
@@ -48,7 +48,7 @@ exports.main = function(){
     resultsMenu.hide();
     console.log('TAP!');
     console.log('axis: ' + e.axis + ', direction:' + e.direction);
-    menuItems[0].title = "150£"
+    menuItems[0].title = "150£";
     resultsMenu = new UI.Menu({
     sections: [{
         title: 'Main menu',
@@ -73,7 +73,17 @@ exports.main = function(){
   // Add an action for menu options
   resultsMenu.on('select', function(e) {
     
-    if (e.itemIndex === 0) accounts.main();
+    if (e.itemIndex === 0) {
+      accounts.main(function(update){
+        //menuItems[0].title = update.balance.toString() + "£";
+        //menuItems[0].subtitle = update.accountNo.toString();
+        resultsMenu.item(0, 0, { title: update.balance.toString() + "£", 
+                               subtitle: update.accountNo.toString() });
+
+      });
+      
+      
+    }
     if (e.itemIndex == 1) {}
     if (e.itemIndex == 2) transactions.main();
     if (e.itemIndex == 3) contacts.main();

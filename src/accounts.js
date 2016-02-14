@@ -17,7 +17,7 @@ var accountsSample = [
 
 // Create a Card with title and subtitle
 
-exports.main = function() {
+exports.main = function(callback) {
   this.accounts = [];
   var self = this;
   
@@ -43,8 +43,8 @@ exports.main = function() {
     accountsSample[selectedAcc].isMain = false;
     selectedAcc = e.itemIndex;
     accountsSample[selectedAcc].isMain = true;
-    console.log("It's mmkay");
     self.accountsMenu.hide();
+    callback(accountsSample[selectedAcc]);
   });
   
 };
