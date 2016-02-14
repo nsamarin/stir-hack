@@ -76,7 +76,7 @@ exports.main = function(){
         wBudget.main(budget, remainingBudget, function(update){
           console.log("update is ", update);
           resultsMenu.item(0, 1, { title: update + "/" + budget + "£", 
-                               subtitle: "Weekly budget" });
+                               subtitle: "Weekly Budget" });
       });
       
     }

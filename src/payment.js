@@ -37,11 +37,11 @@ exports.main = function(callback) {
   this.contactsMenu.on('select', function(e) {
     var contact = e.item.title;
     
-    var input = 0;
+    var input = 1;
     
     var paymentCard = new UI.Card({
       title:'Please insert your amount',
-      subtitle: "0£",
+      subtitle: "1£",
       textAlign: "center"
     });
     
@@ -57,7 +57,7 @@ exports.main = function(callback) {
     });
     
     paymentCard.on('click', 'down', function() {
-      if (input > 0) {
+      if (input > 1) {
         input--;
         paymentCard.subtitle(input.toString() + "£");
       }
