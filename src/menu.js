@@ -60,7 +60,7 @@ exports.main = function(){
     });
   });
   
-  // Add an action for menu options
+  // Add actions for menu options
   resultsMenu.on('select', function(e) {
     
     if (e.itemIndex === 0) {
