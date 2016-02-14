@@ -17,16 +17,16 @@ var authFail = new UI.Card({
 });
 
 auth.main(dummyAuthenticationCode, function(grantAccess) {
-  Pebble.addEventListener('appmessage',
-  function(e) {
-    console.log('Received message: ' + JSON.stringify(e.payload));
-  }
-);
   console.log(grantAccess);
   if (grantAccess) {
     menu.main();
   }
-  else authFail.show();
+  else {
+    authFail.show();
+  }
 });
 
-// transactions.main();
+
+authFail.on('click', 'select', function() {
+  console.log('Select from FAIL clicked!');
+});

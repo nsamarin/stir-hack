@@ -3,6 +3,8 @@ var transactions = require('./viewTransactions');
 var accounts = require('./accounts');
 var contacts = require('./payment');
 var Accel = require('ui/accel');
+var Vibe = require('ui/vibe');
+
 
 // Construct Menu to show to user
 
@@ -35,6 +37,7 @@ var menuItems = [
 exports.main = function(){
   
   Accel.init();
+  
   var resultsMenu = new UI.Menu({
     sections: [{
       title: 'Main menu',
@@ -43,31 +46,18 @@ exports.main = function(){
   });
   resultsMenu.show();
   
+  
   // Register for 'tap' events
   resultsMenu.on('accelTap', function(e) {
-    resultsMenu.hide();
-    console.log('TAP!');
     console.log('axis: ' + e.axis + ', direction:' + e.direction);
-    menuItems[0].title = "150£";
-    resultsMenu = new UI.Menu({
-    sections: [{
-        title: 'Main menu',
-        items: menuItems
-      }]
+    // Send a long vibration to the user wrist
+    Vibe.vibrate('long');
+    
+    accounts.main(function(update){
+        resultsMenu.item(0, 0, {title: "150£", 
+                               subtitle: menuItems[0].subtitle});
+
     });
-    resultsMenu.show();
-    // Add an action for menu options
-    resultsMenu.on('select', function(e) {
-    
-    if (e.itemIndex === 0) accounts.main();
-    if (e.itemIndex == 1) {}
-    if (e.itemIndex == 2) transactions.main();
-    if (e.itemIndex == 3) contacts.main();
-    
-    console.log('Item number ' + e.itemIndex + ' was pressed!');
-  });
-    
-    
   });
   
   // Add an action for menu options
@@ -75,14 +65,10 @@ exports.main = function(){
     
     if (e.itemIndex === 0) {
       accounts.main(function(update){
-        //menuItems[0].title = update.balance.toString() + "£";
-        //menuItems[0].subtitle = update.accountNo.toString();
         resultsMenu.item(0, 0, { title: update.balance.toString() + "£", 
                                subtitle: update.accountNo.toString() });
 
       });
-      
-      
     }
     if (e.itemIndex == 1) {}
     if (e.itemIndex == 2) transactions.main();

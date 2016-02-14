@@ -9,7 +9,8 @@ var DOWN_LONG = 31;
 
 // Create a Card with title and subtitle
 var loginCard = new UI.Card({
-   title:'Please insert your pattern'
+   title:'Please insert your pattern',
+   subtitle: ""
 });
 
 // Test code is = [10, 30, 21];
@@ -17,6 +18,7 @@ var loginCard = new UI.Card({
 exports.main = function(authCode, callback) {
   
   this.clicks = [];
+  this.input = "";
   var self = this;
   
   // Display the Card
@@ -24,26 +26,31 @@ exports.main = function(authCode, callback) {
   
   loginCard.on('click', 'up', function() {
     console.log('Up clicked!');
+    loginCard.subtitle(self.input += "*");
     self.clicks.push(UP_SHORT);
   });
   
   loginCard.on('click', 'down', function() {
     console.log('Down clicked!');
+    loginCard.subtitle(self.input += "*");
     self.clicks.push(DOWN_SHORT);
   });
   
   loginCard.on('click', 'select', function() {
     console.log('Select clicked!');
+    loginCard.subtitle(self.input += "*");
     self.clicks.push(SELECT_SHORT);
   });
   
   loginCard.on('longClick', 'up', function() {
     console.log('Up long clicked!');
+    loginCard.subtitle(self.input += "*");
     self.clicks.push(UP_LONG);
   });
   
   loginCard.on('longClick', 'down', function() {
     console.log('Down long clicked!');
+    loginCard.subtitle(self.input += "*");
     self.clicks.push(DOWN_LONG);
   });
   
