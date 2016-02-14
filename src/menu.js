@@ -2,6 +2,7 @@ var UI = require('ui');
 var transactions = require('./viewTransactions');
 var accounts = require('./accounts');
 var contacts = require('./payment');
+var Accel = require('ui/accel');
 
 // Construct Menu to show to user
 
@@ -29,26 +30,33 @@ var menuItems = [
   }
 ];
 
-var resultsMenu = new UI.Menu({
-  sections: [{
-    title: 'Main menu',
-    items: menuItems
-  }]
-});
+
 
 
 // Show the Menu
 exports.main = function(){
+  Accel.init();
+  var resultsMenu = new UI.Menu({
+    sections: [{
+      title: 'Main menu',
+      items: menuItems
+    }]
+  });
   resultsMenu.show();
   
   // Register for 'tap' events
   resultsMenu.on('accelTap', function(e) {
+    resultsMenu.hide();
     console.log('TAP!');
     console.log('axis: ' + e.axis + ', direction:' + e.direction);
-    resultsMenu.items(0,   {
-      title: "150£",
-      subtitle: mainAccNum.toString()
+    menuItems[0].title = "150£"
+    resultsMenu = new UI.Menu({
+    sections: [{
+        title: 'Main menu',
+        items: menuItems
+      }]
     });
+    resultsMenu.show();
   });
   
   // Add an action for menu options

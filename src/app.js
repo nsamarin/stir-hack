@@ -13,7 +13,7 @@ var auth = require('./authenticate');
 var dummyAuthenticationCode = [10, 30, 21];
 
 // Initialize the accelerometer
-Accel.init();
+//Accel.init();
 
 auth.main(dummyAuthenticationCode, function(grantAccess) {
   Pebble.addEventListener('appmessage',
