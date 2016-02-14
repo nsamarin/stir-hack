@@ -4,6 +4,7 @@ var accounts = require('./accounts');
 var contacts = require('./payment');
 var Accel = require('ui/accel');
 var Vibe = require('ui/vibe');
+var wBudget = require('./weeklyBudget')
 
 
 // Construct Menu to show to user
@@ -16,11 +17,11 @@ var remainingBudget = 30;
 var menuItems = [
   {
     title: mainAccSum.toString() + "£",
-    subtitle: mainAccNum.toString()
+    subtitle: "Acc No: " + mainAccNum.toString()
   },
   {
-    title: remainingBudget.toString() + "/" + budget.toString(),
-    subtitle: "Weekly budget"
+    title: remainingBudget.toString() + "£" + "/" + budget.toString() + "£",
+    subtitle: "Weekly Budget"
   },
   {
     title: "View transactions",
@@ -52,12 +53,7 @@ exports.main = function(){
     console.log('axis: ' + e.axis + ', direction:' + e.direction);
     // Send a long vibration to the user wrist
     Vibe.vibrate('long');
-    
-    accounts.main(function(update){
-        resultsMenu.item(0, 0, {title: "150£", 
-                               subtitle: menuItems[0].subtitle});
-
-    });
+    resultsMenu.item(0, 0, {title: "150£", subtitle: menuItems[0].subtitle});
   });
   
   // Add actions for menu options
@@ -70,7 +66,14 @@ exports.main = function(){
 
       });
     }
-    if (e.itemIndex == 1) {}
+    if (e.itemIndex == 1) {
+        wBudget.main(budget, remainingBudget, function(update){
+          console.log("update is ", update)
+          resultsMenu.item(0, 1, { title: update +"£" + "/" + budget + "£", 
+                               subtitle: "Weekly budget" });
+      });
+      
+    }
     if (e.itemIndex == 2) transactions.main();
     if (e.itemIndex == 3) contacts.main();
     
