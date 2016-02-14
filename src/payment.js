@@ -12,7 +12,7 @@ var contactsSample = [
    }
   ];
 
-exports.main = function() {
+exports.main = function(callback) {
   this.contacts = [];
   var self = this;
   
@@ -70,6 +70,7 @@ exports.main = function() {
         console.log("well played");
         paymentCard.hide();
         self.contactsMenu.hide();
+        callback();
         return;
       }
       paymentCard.title("Confirm Transfer");

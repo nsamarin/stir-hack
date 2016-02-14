@@ -41,6 +41,8 @@ var menuItems = [
 // Show the Menu
 exports.main = function(){
   
+  var card = new UI.Card({});
+
   Accel.init();
   
   var resultsMenu = new UI.Menu({
@@ -79,15 +81,20 @@ exports.main = function(){
       
     }
     if (e.itemIndex == 2) transactions.main();
-    if (e.itemIndex == 3) contacts.main();
+    if (e.itemIndex == 3) {
+      contacts.main(function(){
+        card.title("Transaction complete!");
+        card.show();
+        setTimeout(function(){ card.hide(); }, 2000);
+      });
+    }
     if (e.itemIndex == 4) {
       registration.main("Please insert new pattern", function(x){
         registration.main("Please confirm new pattern", function(y){
-        var card = new UI.Card({});
           if (registration.checkPattern(x,y)) card.title("New pattern set up!");
           else card.title("Patterns do not match up!");
           card.show();
-          setTimeout(function(){ card.hide(); }, 3000);
+          setTimeout(function(){ card.hide(); }, 2000);
         });
       });
       
