@@ -20,7 +20,7 @@ var menuItems = [
     subtitle: "Acc No: " + mainAccNum.toString()
   },
   {
-    title: remainingBudget.toString() + "£" + "/" + budget.toString() + "£",
+    title: remainingBudget.toString() + "/" + budget.toString() + "£",
     subtitle: "Weekly Budget"
   },
   {
@@ -62,14 +62,14 @@ exports.main = function(){
     if (e.itemIndex === 0) {
       accounts.main(function(update){
         resultsMenu.item(0, 0, { title: update.balance.toString() + "£", 
-                               subtitle: update.accountNo.toString() });
+                               subtitle: "Acc No: " + update.accountNo.toString() });
 
       });
     }
     if (e.itemIndex == 1) {
         wBudget.main(budget, remainingBudget, function(update){
           console.log("update is ", update)
-          resultsMenu.item(0, 1, { title: update +"£" + "/" + budget + "£", 
+          resultsMenu.item(0, 1, { title: update + "/" + budget + "£", 
                                subtitle: "Weekly budget" });
       });
       
