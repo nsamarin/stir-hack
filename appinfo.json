@@ -4,7 +4,7 @@
         ""
     ],
     "companyName": "n.samarin.s@gmail.com",
-    "longName": "Test",
+    "longName": "Bank",
     "projectType": "pebblejs",
     "resources": {
         "media": [
@@ -32,7 +32,7 @@
         ]
     },
     "sdkVersion": "3",
-    "shortName": "Test",
+    "shortName": "Bank",
     "targetPlatforms": [
         "aplite",
         "basalt"
