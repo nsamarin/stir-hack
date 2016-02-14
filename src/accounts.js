@@ -25,7 +25,7 @@ exports.main = function(callback) {
   for (var i = 0; i < accountsSample.length; i++) {
     var end = accountsSample[i].isMain ? ", Main" : "";
     self.accounts.push({
-      title: accountsSample[i].balance.toString(),
+      title: accountsSample[i].balance.toString() + "£",
       subtitle: accountsSample[i].accountNo.toString() + end 
     });
   }
@@ -33,7 +33,7 @@ exports.main = function(callback) {
   // Construct Menu to show to user
   this.accountsMenu = new UI.Menu({
     sections: [{
-      title: 'Select to set MainAcc',
+      title: 'Select Main Account',
       items: self.accounts
     }]
   });
