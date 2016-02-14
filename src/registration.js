@@ -23,12 +23,12 @@ var checkPattern = function(clicks, code) {
 
 // Test code is = [10, 30, 21];
 
-exports.main = function(authCode, callback) {
+exports.main = function(cardTitle, callback) {
   Accel.init();
   
   // Create a Card with title and subtitle
   var loginCard = new UI.Card({
-     title:'Please insert your pattern',
+     title: cardTitle,
      subtitle: ""
   });
   
@@ -84,12 +84,13 @@ exports.main = function(authCode, callback) {
   // Accepting press by long select click & pattern check
   loginCard.on('longClick', 'select', function() {
     clicks.push(SELECT_LONG);
-    console.log('Select long clicked!', clicks, authCode);
     loginCard.hide();
-    callback(checkPattern(clicks, authCode));
+    callback(clicks);
     return;
   });
 
 };
+
+exports.checkPattern = checkPattern;
 
 

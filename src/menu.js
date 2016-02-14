@@ -1,10 +1,13 @@
 var UI = require('ui');
+var Accel = require('ui/accel');
+var Vibe = require('ui/vibe');
+var wBudget = require('./weeklyBudget');
+
 var transactions = require('./viewTransactions');
 var accounts = require('./accounts');
 var contacts = require('./payment');
-var Accel = require('ui/accel');
-var Vibe = require('ui/vibe');
-var wBudget = require('./weeklyBudget')
+var registration = require('./registration');
+
 
 
 // Construct Menu to show to user
@@ -24,12 +27,13 @@ var menuItems = [
     subtitle: "Weekly Budget"
   },
   {
-    title: "View transactions",
-    //subtitle: "Only three left!"
+    title: "View transactions"
   },
   {
-    title: "Make a Payment",
-    //subtitle: "Only three left!"
+    title: "Make a Payment"
+  },
+  {
+    title: "Change Pattern"
   }
 ];
 
@@ -68,7 +72,7 @@ exports.main = function(){
     }
     if (e.itemIndex == 1) {
         wBudget.main(budget, remainingBudget, function(update){
-          console.log("update is ", update)
+          console.log("update is ", update);
           resultsMenu.item(0, 1, { title: update + "/" + budget + "£", 
                                subtitle: "Weekly budget" });
       });
@@ -76,7 +80,18 @@ exports.main = function(){
     }
     if (e.itemIndex == 2) transactions.main();
     if (e.itemIndex == 3) contacts.main();
-    
+    if (e.itemIndex == 4) {
+      registration.main("Please insert new pattern", function(x){
+        registration.main("Please confirm new pattern", function(y){
+        var card = new UI.Card({});
+          if (registration.checkPattern(x,y)) card.title("New pattern set up!");
+          else card.title("Patterns do not match up!");
+          card.show();
+          setTimeout(function(){ card.hide(); }, 3000);
+        });
+      });
+      
+    }
     console.log('Item number ' + e.itemIndex + ' was pressed!');
   });
 };
