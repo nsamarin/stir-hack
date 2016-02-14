@@ -1,6 +1,4 @@
 var UI = require('ui');
-var Vector2 = require('vector2');
-
 
 var contactsSample = [
     {
@@ -37,29 +35,47 @@ exports.main = function() {
   
     // Add an action for menu options
   this.contactsMenu.on('select', function(e) {
+    var contact = e.item.title;
     
-    console.log('Item number ' + e.itemIndex + ' was pressed!');
+    var input = 0;
     
+    var paymentCard = new UI.Card({
+      title:'Please insert your amount',
+      subtitle: "0£",
+      textAlign: "center"
+    });
     
-  
-    // Show splash screen while waiting for data
-//     self.selectAmountWindow = new UI.Window();
+    // Display the Card
+    paymentCard.show();
     
-//     // Text element to inform user
-//     self.selectAmountWindow.add(new UI.Text({
-//       position: new Vector2(0, 0),
-//       size: new Vector2(144, 168),
-//       text:'Choose Amount\n',
-//       color:'black',
-//       textOverflow:'wrap',
-//       textAlign:'center',
-//       backgroundColor:'white'
-//     }));
-
+    // Handle short presses for pattern input
+    paymentCard.on('click', 'up', function() {
+      if (input < 20) {
+        input++;
+        paymentCard.subtitle(input.toString() + "£");
+      }
+    });
     
-//     self.selectAmountWindow.show();
+    paymentCard.on('click', 'down', function() {
+      if (input > 0) {
+        input--;
+        paymentCard.subtitle(input.toString() + "£");
+      }
+    });
     
+    var confirmedTransfer = false;
     
+    paymentCard.on('click', 'select', function() {
+      if (confirmedTransfer) {
+        console.log("well played");
+        paymentCard.hide();
+        self.contactsMenu.hide();
+        return;
+      }
+      paymentCard.title("Confirm Transfer");
+      paymentCard.subtitle("");
+      paymentCard.body("Are you sure you want to send " + input + "£ to " + contact + "?");
+      confirmedTransfer = true;
+    });
   });
-
 };
