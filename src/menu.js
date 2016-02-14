@@ -31,10 +31,9 @@ var menuItems = [
 ];
 
 
-
-
 // Show the Menu
 exports.main = function(){
+  
   Accel.init();
   var resultsMenu = new UI.Menu({
     sections: [{
@@ -57,6 +56,18 @@ exports.main = function(){
       }]
     });
     resultsMenu.show();
+    // Add an action for menu options
+    resultsMenu.on('select', function(e) {
+    
+    if (e.itemIndex === 0) accounts.main();
+    if (e.itemIndex == 1) {}
+    if (e.itemIndex == 2) transactions.main();
+    if (e.itemIndex == 3) contacts.main();
+    
+    console.log('Item number ' + e.itemIndex + ' was pressed!');
+  });
+    
+    
   });
   
   // Add an action for menu options
